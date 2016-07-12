@@ -3,7 +3,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
 
-require_relative '../lib/night_write'
+require './lib/night_write'
 # require 'dummy'
 # require_relative '../lib/braille'
 

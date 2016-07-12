@@ -2,7 +2,7 @@ gem 'minitest', '~> 5.0'
 require 'minitest/autorun'
 require 'minitest/pride'
 
-require_relative '../lib/three_lines'
+require './lib/three_lines'
 
 class ThreeLineTest < Minitest::Test
 
