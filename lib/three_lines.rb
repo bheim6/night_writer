@@ -5,11 +5,12 @@ class ThreeLines
   end
 
   def change_to_three
-    print "#{@word}\n#{@word}\n#{@word}"
-
+     "#{@word}\n#{@word}\n#{@word}"
   end
 
 end
+
+
 
 newword = ThreeLines.new("Bob")
 puts newword.change_to_three
