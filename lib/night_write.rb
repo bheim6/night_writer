@@ -1,4 +1,6 @@
-class Runner
+require 'pry'
+
+class NightWrite
   def point
     ARGV[0]
   end
@@ -12,8 +14,8 @@ class Runner
     File.write(ARGV[1], content)
   end
 
-  def count
-    num = File.read(ARGV[1])
+  def counter
+    @num = File.read(ARGV[1])
     num.length
   end
 
@@ -24,6 +26,7 @@ class Runner
 
 end
 
-tes = Runner.new
-tes.writer
-tes.characters
+# tes = NightWrite.new
+# tes.writer
+#
+# tes.characters
