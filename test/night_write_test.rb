@@ -11,44 +11,44 @@ class NightWriteTest < Minitest::Test
 
  def test_runner_exists
 
-   assert Runner
+   assert NightWrite
 
  end
 
  # def test_runner_can_read
- #   runner = Runner.new
+ #   runner = NightWrite.new
  #   assert_equal true, runner.read
  # end
 
  def test_it_point_to_argument
-   runner = Runner.new
+   runner = NightWrite.new
    assert_equal  ARGV[0], runner.point
  end
 
  def test_it_can_read_file_from_cli
-   runner = Runner.new
+   runner = NightWrite.new
    content = File.read(ARGV[0])
    assert_equal content, runner.reader
  end
 
  def test_it_can_write_to_new_file
-   runner = Runner.new
+   runner = NightWrite.new
    content = File.read(ARGV[0])
    assert_equal File.write(ARGV[1], content), runner.writer
  end
 
  def test_it_can_count
-   runner = Runner.new
+   runner = NightWrite.new
    content = File.read(ARGV[0])
    File.write(ARGV[1], content)
-   assert_equal content.length, runner.count
+   assert_equal content.length, runner.counter
  end
 
  def test_it_prints_out_correct_info
-   runner = Runner.new
+   runner = NightWrite.new
    content = File.read(ARGV[0])
    File.write(ARGV[1], content)
-   char = runner.count
+   char = runner.counter
    assert_equal "Created #{ARGV[1]} containing #{char} characters.", runner.characters
  end
 
