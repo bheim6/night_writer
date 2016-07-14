@@ -31,10 +31,5 @@ class TranslateTest < Minitest::Test
     assert_equal "..0.\n....\n.0..", translate.translate_to_braille
   end
 
-  # def test_it_receives_input_from_cli
-  #   translate = Translate.new(ARGV[0])
-  #   assert_equal "000.0.\n....0.\n......\n", translate.translate_to_braille
-  #
-  # end
 
 end
