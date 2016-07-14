@@ -8,7 +8,7 @@ class ThreeLineTest < Minitest::Test
 
   def test_it_outputs_input_three_times
     lines = ThreeLines.new("word")
-    assert_equal "#{"word"}\n#{"word"}\n#{"word"}", lines.change_to_three
+    assert_equal "word\nword\nword", lines.change_to_three
   end
 
 end

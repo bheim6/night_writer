@@ -1,7 +1,7 @@
-require './lib/night_write'
 require 'pry'
 
-class Translate
+class NightRead
+
   attr_reader :input
 
   def initialize(input)
@@ -37,24 +37,60 @@ class Translate
                 "W" => ["...0", "..00", ".0.0"], "X" => ["..00", "....", ".000"],
                 "Y" => ["..00", "...0", ".000"], "Z" => ["..0.", "...0", ".000"]}
 
+      @new_library = @library.invert
+
   end
 
-  def translate_to_braille
 
-    translated = @input.chars.map do |char|
-      @library[char]
+  def translate_to_english
+
+    braille = input.split("\n")
+
+    array_1 = braille[0]
+    array_2 = braille[1]
+    array_3 = braille[2]
+
+    row_1 = array_1.scan(/../)
+    row_2 = array_2.scan(/../)
+    row_3 = array_3.scan(/../)
+
+
+
+    letters = row_1.zip(row_2, row_3)
+
+    capital = letters.include?(["..", "..", ".0"])
+
+
+
+    # letters2 = letters.map do |letter|
+    #   if letter == ["0.", "..", ".."]
+    #     index = letters.index(letter)
+    #   # else
+    #   #   letters2 << letter
+    #   # end
+    #
+    #   end
+
+      # shift = ["..", "..", ".0"]
+
+
+      # l_case_letter = letters[letters2 + 1]
+      #
+      # words = 3.times.map do |i|
+      #   shift[i] + l_case_letter[i]
+      #
+      # end
+
+      # binding.pry
+
+
+
+
+    words = letters.map do |letter|
+      @new_library[letter]
     end
 
-    rows = translated.transpose.map do |array|
-      array.join
-    end
-
-    rows.join("\n")
-
+    message = words.join
   end
 
 end
-
-
-# translate = Translate.new
-# puts translate

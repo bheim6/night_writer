@@ -1,5 +1,6 @@
 require 'pry'
 
+
 class NightWrite
   def point
     ARGV[0]
@@ -16,7 +17,7 @@ class NightWrite
 
   def counter
     @num = File.read(ARGV[1])
-    num.length
+    @num.length
   end
 
   def characters

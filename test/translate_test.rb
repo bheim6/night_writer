@@ -13,16 +13,6 @@ class TranslateTest < Minitest::Test
       assert Translate
   end
 
-  # def test_breaks_file_into_chars
-  #   skip
-  #   runner = NightWrite.new
-  #   translate = Translate.new("a")
-  #   runner.writer
-  #   file_characters = File.readlines(ARGV[1])
-  #   assert_equal file_characters, translate.separate
-  #   # binding.pry
-  # end
-
   def test_it_translates_a_lcase_letter
     writer = NightWrite.new
     translate = Translate.new("a")
@@ -32,7 +22,6 @@ class TranslateTest < Minitest::Test
   def test_it_translates_two_letters
     writer = NightWrite.new
     translate = Translate.new("ab")
-    # binding.pry
     assert_equal "0.0.\n..0.\n....", translate.translate_to_braille
   end
 
@@ -42,10 +31,10 @@ class TranslateTest < Minitest::Test
     assert_equal "..0.\n....\n.0..", translate.translate_to_braille
   end
 
-
-
-
-
-
+  # def test_it_receives_input_from_cli
+  #   translate = Translate.new(ARGV[0])
+  #   assert_equal "000.0.\n....0.\n......\n", translate.translate_to_braille
+  #
+  # end
 
 end
