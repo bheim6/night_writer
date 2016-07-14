@@ -12,8 +12,8 @@ end
 
 
 
-newword = ThreeLines.new("Bob")
-puts newword.change_to_three
+# newword = ThreeLines.new("Bob")
+# puts newword.change_to_three
 
 # class Braille
 #   def initialize(letter)
