@@ -26,8 +26,3 @@ class NightWrite
   end
 
 end
-
-# tes = NightWrite.new
-# tes.writer
-#
-# tes.characters

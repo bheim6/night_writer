@@ -54,37 +54,7 @@ class NightRead
     row_2 = array_2.scan(/../)
     row_3 = array_3.scan(/../)
 
-
-
     letters = row_1.zip(row_2, row_3)
-
-    capital = letters.include?(["..", "..", ".0"])
-
-
-
-    # letters2 = letters.map do |letter|
-    #   if letter == ["0.", "..", ".."]
-    #     index = letters.index(letter)
-    #   # else
-    #   #   letters2 << letter
-    #   # end
-    #
-    #   end
-
-      # shift = ["..", "..", ".0"]
-
-
-      # l_case_letter = letters[letters2 + 1]
-      #
-      # words = 3.times.map do |i|
-      #   shift[i] + l_case_letter[i]
-      #
-      # end
-
-      # binding.pry
-
-
-
 
     words = letters.map do |letter|
       @new_library[letter]

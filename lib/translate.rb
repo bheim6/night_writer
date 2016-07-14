@@ -1,4 +1,4 @@
-require './lib/night_write'
+
 require 'pry'
 
 class Translate
@@ -41,7 +41,7 @@ class Translate
 
   def translate_to_braille
 
-    translated = @input.chars.map do |char|
+    translated = @input.chomp.chars.map do |char|
       @library[char]
     end
 
@@ -53,8 +53,5 @@ class Translate
 
   end
 
+
 end
-
-
-# translate = Translate.new
-# puts translate
