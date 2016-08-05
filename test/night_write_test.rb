@@ -42,5 +42,4 @@ class NightWriteTest < Minitest::Test
     char = runner.counter
     assert_equal "Created #{ARGV[1]} containing #{char} characters.", runner.characters
   end
-
 end

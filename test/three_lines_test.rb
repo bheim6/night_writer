@@ -10,5 +10,4 @@ class ThreeLineTest < Minitest::Test
     lines = ThreeLines.new("word")
     assert_equal "word\nword\nword", lines.change_to_three
   end
-
 end

@@ -30,6 +30,4 @@ class TranslateTest < Minitest::Test
     translate = Translate.new("A")
     assert_equal "..0.\n....\n.0..", translate.translate_to_braille
   end
-
-
 end

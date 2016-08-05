@@ -7,5 +7,4 @@ class ThreeLines
   def change_to_three
      "#{@word}\n#{@word}\n#{@word}"
   end
-
 end

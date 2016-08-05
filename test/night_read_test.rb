@@ -29,5 +29,4 @@ class TranslateTest < Minitest::Test
     reader = NightRead.new("..0.\n....\n.0..")
     assert_equal "A", reader.translate_to_english
   end
-
 end
