@@ -2,14 +2,12 @@ gem 'minitest', '~> 5.0'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
-
 require './lib/night_read'
 
 class TranslateTest < Minitest::Test
 
   def test_it_exists
     assert NightRead
-
   end
 
   def test_it_translates_a_braille_char
@@ -28,13 +26,8 @@ class TranslateTest < Minitest::Test
   end
 
   def test_it_translates_capital_braille_chars
-    skip
     reader = NightRead.new("..0.\n....\n.0..")
     assert_equal "A", reader.translate_to_english
   end
-
-  # def test_it_receives_input_from_cli
-  #   reader = NightRead.new(ARGV[0])
-  # end
 
 end

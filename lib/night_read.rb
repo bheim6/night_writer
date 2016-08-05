@@ -22,7 +22,7 @@ class NightRead
                 "'" => ["..", "..", "0."], "," => ["..", "0.", ".."],
                 "-" => ["..", "..", "00"], "." => ["..", "00", ".0"],
                 " " => ["..", "..", ".."], "!" => ["..", "00", "0."],
-                "?" => ["..", "0.", "00"],
+                "?" => ["..", "0.", "00"], "^" => ["..", "..", ".0"],
                 "A" => ["..0.", "....", ".0.."], "B" => ["..0.", "..0.", ".0.."],
                 "C" => ["..00", "....", ".0.."], "D" => ["..00", "...0", ".0.."],
                 "E" => ["..0.", "...0", ".0.."], "F" => ["..00", "..0.", ".0.."],
@@ -38,22 +38,17 @@ class NightRead
                 "Y" => ["..00", "...0", ".000"], "Z" => ["..0.", "...0", ".000"]}
 
       @new_library = @library.invert
-
   end
 
 
   def translate_to_english
-
     braille = input.split("\n")
-
     array_1 = braille[0]
     array_2 = braille[1]
     array_3 = braille[2]
-
     row_1 = array_1.scan(/../)
     row_2 = array_2.scan(/../)
     row_3 = array_3.scan(/../)
-
     letters = row_1.zip(row_2, row_3)
 
     words = letters.map do |letter|
@@ -61,6 +56,9 @@ class NightRead
     end
 
     message = words.join
+    message.gsub(/\^[a-z]/) do |capital_pair|
+      capital_pair[1].upcase
+    end
   end
 
 end
