@@ -1,28 +1,23 @@
-require 'pry'
+require './lib/translate'
+
+handle = File.open(ARGV[0], "r")
+
+message = handle.read
+
+handle.close
 
 
-class NightWrite
-  def point
-    ARGV[0]
-  end
+translate = Translate.new(message)
 
-  def reader
-    File.read(ARGV[0])
-  end
 
-  def writer
-    content = File.read(ARGV[0])
-    File.write(ARGV[1], content)
-  end
+new_braille = translate.translate_to_braille
 
-  def counter
-    @num = File.read(ARGV[1])
-    @num.length
-  end
 
-  def characters
-    @char = File.read(ARGV[1]).length.to_s
-    p "Created #{ARGV[1]} containing #{@char} characters."
-  end
+writer = File.open(ARGV[1], "w")
 
-end
+writer.write(new_braille)
+
+writer.close
+
+char = File.read(ARGV[1]).length.to_s
+puts "Created #{ARGV[1]} containing #{char} characters."

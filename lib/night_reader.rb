@@ -1,6 +1,7 @@
 require 'pry'
 
-class Translate
+class NightReader
+
   attr_reader :input
 
   def initialize(input)
@@ -41,27 +42,28 @@ class Translate
                 # "5" => ["0.", ".0", ".."], "6" => ["00", "0.", ".."],
                 # "7" => ["00", "00", ".."], "8" => ["0.", "00", ".."],
                 # "9" => [".0", "0.", ".."]
+
+      @new_library = @library.invert
   end
 
-  def convert_to_rows
-    translated = input.chomp.chars.map do |char|
-      @library[char]
+
+  def convert_to_characters
+    braille = input.split("\n")
+    row_1 = braille[0].scan(/../)
+    row_2 = braille[1].scan(/../)
+    row_3 = braille[2].scan(/../)
+    row_1.zip(row_2, row_3)
+  end
+
+  def translate_to_english
+    letters = convert_to_characters
+    words = letters.map do |letter|
+      @new_library[letter]
     end
-    translated.transpose.map do |array|
-      array.join
+    message = words.join
+    message.gsub(/\^[a-z]/) do |capital_pair|
+      capital_pair[1].upcase
     end
   end
 
-  def translate_to_braille
-    i = 0
-    rows = convert_to_rows
-     while i < rows.length
-      if rows[i].length > 80
-        rows[i + 3] = rows[i][80..-1]
-        rows[i] = rows[i][0..79]
-      end
-      i += 1
-    end
-      rows.join("\n")
-  end
 end
