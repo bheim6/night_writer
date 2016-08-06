@@ -46,12 +46,20 @@ class NightReader
       @new_library = @library.invert
   end
 
+  def convert_multiline(braille)
+    braille_chars = ["", "", ""]
+    braille.each_with_index do |char, index|
+      braille_chars[index % 3] << char
+    end
+    braille_chars
+  end
 
   def convert_to_characters
-    braille = input.split("\n")
-    row_1 = braille[0].scan(/../)
-    row_2 = braille[1].scan(/../)
-    row_3 = braille[2].scan(/../)
+    split_braille = input.split("\n")
+    braille_row = convert_multiline(split_braille)
+    row_1 = braille_row[0].scan(/../)
+    row_2 = braille_row[1].scan(/../)
+    row_3 = braille_row[2].scan(/../)
     row_1.zip(row_2, row_3)
   end
 
