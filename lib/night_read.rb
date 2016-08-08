@@ -6,12 +6,9 @@ message = handle.read
 
 handle.close
 
-
 reader = NightReader.new(message)
 
-
 new_english = reader.translate_to_english
-
 
 writer = File.open(ARGV[1], "w")
 

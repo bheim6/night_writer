@@ -4,7 +4,6 @@ require 'minitest/pride'
 require 'pry'
 require './lib/translate'
 
-
 class TranslateTest < Minitest::Test
 
   def test_it_can_modify_input_when_given_single_number
@@ -96,5 +95,4 @@ class TranslateTest < Minitest::Test
 
     assert_equal ".00.0...00\n.0..0...00\n00........", translate.translate_to_braille
   end
-
 end

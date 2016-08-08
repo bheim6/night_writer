@@ -4,7 +4,16 @@ require 'minitest/pride'
 require 'pry'
 require './lib/night_reader'
 
-class TranslateTest < Minitest::Test
+class NightReaderTest < Minitest::Test
+
+  def test_it_can_convert_multi_line_braille_to_array
+    reader = NightReader.new("0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n................................................................................\n................................................................................\n0.\n..\n..")
+    braille = reader.input.split("\n")
+
+    assert_equal ["0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.",
+                  "..................................................................................",
+                  ".................................................................................."], reader.convert_multiline(braille)
+  end
 
   def test_it_can_convert_single_braille_letter_to_an_array_of_character_arrays
     reader = NightReader.new("0.\n..\n..")
@@ -62,19 +71,19 @@ class TranslateTest < Minitest::Test
     assert_equal "A", reader.translate_to_english
   end
 
-  def test_it_can_format_a_braille_number
+  def test_it_can_translate_a_braille_number
     reader = NightReader.new(".00...\n.0....\n00....")
 
     assert_equal "1", reader.translate_to_english
   end
 
-  def test_it_can_format_a_braille_number_and_letter_with_space
+  def test_it_can_translate_a_braille_number_and_letter_with_space
     reader = NightReader.new("0....00...\n.....0....\n....00....")
 
     assert_equal "a 1", reader.translate_to_english
   end
 
-  def test_it_can_format_a_braille_number_and_letter
+  def test_it_can_translate_a_braille_number_and_letter
     reader = NightReader.new(".00.0...000.\n.0..0...00..\n00..........")
 
     assert_equal "12ga", reader.translate_to_english
