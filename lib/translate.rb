@@ -1,5 +1,3 @@
-require 'pry'
-
 class Translate
   attr_reader :input
 
@@ -83,6 +81,6 @@ class Translate
       end
       i += 1
     end
-      rows.join("\n")
+    rows.join("\n")
   end
 end

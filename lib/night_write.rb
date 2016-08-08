@@ -6,12 +6,9 @@ message = handle.read
 
 handle.close
 
-
 translate = Translate.new(message)
 
-
 new_braille = translate.translate_to_braille
-
 
 writer = File.open(ARGV[1], "w")
 

@@ -1,5 +1,4 @@
 class NightReader
-
   attr_reader :input
 
   def initialize(input)
@@ -72,5 +71,4 @@ class NightReader
       capital_pair[1].upcase
     end
   end
-
 end
