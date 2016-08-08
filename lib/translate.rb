@@ -35,20 +35,38 @@ class Translate
                 "U" => ["..0.", "....", ".000"], "V" => ["..0.", "..0.", ".000"],
                 "W" => ["...0", "..00", ".0.0"], "X" => ["..00", "....", ".000"],
                 "Y" => ["..00", "...0", ".000"], "Z" => ["..0.", "...0", ".000"],}
-                # "#" => [".0", ".0", "00"], "0" => [".0", "00", ".."],
-                # "1" => ["0.", "..", ".."], "2" => ["0.", "0.", ".."],
-                # "3" => ["00", "..", ".."], "4" => ["00", ".0", ".."],
-                # "5" => ["0.", ".0", ".."], "6" => ["00", "0.", ".."],
-                # "7" => ["00", "00", ".."], "8" => ["0.", "00", ".."],
-                # "9" => [".0", "0.", ".."]
+
+    @number_library  = {"#" => [".0", ".0", "00"], "0" => [".0", "00", ".."],
+                        "1" => ["0.", "..", ".."], "2" => ["0.", "0.", ".."],
+                        "3" => ["00", "..", ".."], "4" => ["00", ".0", ".."],
+                        "5" => ["0.", ".0", ".."], "6" => ["00", "0.", ".."],
+                        "7" => ["00", "00", ".."], "8" => ["0.", "00", ".."],
+                        "9" => [".0", "0.", ".."]}
+  end
+
+  def format_numbers
+    formatted_number = input.gsub(/[^0-9][0-9]/) do |number_match|
+      number_match[0] + "#" + number_match[1]
+    end
+    formatted_number = formatted_number.gsub(/[0-9][^0-9]/) do |number_match|
+      number_match[0] + " " + number_match[1]
+    end
+    if formatted_number.index(/[0-9]/) == 0
+      formatted_number = "#" + formatted_number
+    end
+    formatted_number
   end
 
   def convert_to_rows
-    translated = input.chomp.chars.map do |char|
-      @library[char]
+    translated = format_numbers.chomp.chars.map do |char|
+      if @number_library.include?(char)
+        @number_library[char]
+      else
+        @library[char]
+      end
     end
-    translated.transpose.map do |array|
-      array.join
+    translated.transpose.map do |characters|
+      characters.join
     end
   end
 
