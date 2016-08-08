@@ -10,13 +10,13 @@ class TranslateTest < Minitest::Test
   def test_it_can_modify_input_when_given_single_number
     translate = Translate.new("1")
 
-    assert_equal "#1", translate.format_numbers
+    assert_equal "#1 ", translate.format_numbers
   end
 
   def test_it_can_modify_input_when_given_multiple_numbers
     translate = Translate.new("123")
 
-    assert_equal "#123", translate.format_numbers
+    assert_equal "#123 ", translate.format_numbers
   end
 
   def test_it_can_modify_input_when_given_multiple_numbers_and_letters
@@ -46,13 +46,13 @@ class TranslateTest < Minitest::Test
   def test_it_can_convert_a_single_number_to_an_array_of_braille_chars
     translate = Translate.new("1")
 
-    assert_equal [".00.", ".0..", "00.."], translate.convert_to_rows
+    assert_equal [".00...", ".0....", "00...."], translate.convert_to_rows
   end
 
   def test_it_can_convert_multiple_numbers_to_an_array_of_braille_chars
     translate = Translate.new("123")
 
-    assert_equal [".00.0.00", ".0..0...", "00......"], translate.convert_to_rows
+    assert_equal [".00.0.00..", ".0..0.....", "00........"], translate.convert_to_rows
   end
 
   def test_it_can_convert_numbers_and_letters_to_an_array_of_braille_chars
@@ -82,13 +82,13 @@ class TranslateTest < Minitest::Test
   def test_it_translates_sinlge_number
     translate = Translate.new("1")
 
-    assert_equal ".00.\n.0..\n00..", translate.translate_to_braille
+    assert_equal ".00...\n.0....\n00....", translate.translate_to_braille
   end
 
   def test_it_translates_multiple_numbers
     translate = Translate.new("123")
 
-    assert_equal ".00.0.00\n.0..0...\n00......", translate.translate_to_braille
+    assert_equal ".00.0.00..\n.0..0.....\n00........", translate.translate_to_braille
   end
 
   def test_it_translates_letters_and_numbers

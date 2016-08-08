@@ -1,5 +1,3 @@
-require 'pry'
-
 class NightReader
 
   attr_reader :input
@@ -23,6 +21,7 @@ class NightReader
                 "-" => ["..", "..", "00"], "." => ["..", "00", ".0"],
                 " " => ["..", "..", ".."], "!" => ["..", "00", "0."],
                 "?" => ["..", "0.", "00"], "^" => ["..", "..", ".0"],
+                "#" => [".0", ".0", "00"],
                 "A" => ["..0.", "....", ".0.."], "B" => ["..0.", "..0.", ".0.."],
                 "C" => ["..00", "....", ".0.."], "D" => ["..00", "...0", ".0.."],
                 "E" => ["..0.", "...0", ".0.."], "F" => ["..00", "..0.", ".0.."],
@@ -37,15 +36,7 @@ class NightReader
                 "W" => ["...0", "..00", ".0.0"], "X" => ["..00", "....", ".000"],
                 "Y" => ["..00", "...0", ".000"], "Z" => ["..0.", "...0", ".000"],}
 
-      @number_library  = {"#" => [".0", ".0", "00"], "0" => [".0", "00", ".."],
-                                  "1" => ["0.", "..", ".."], "2" => ["0.", "0.", ".."],
-                                  "3" => ["00", "..", ".."], "4" => ["00", ".0", ".."],
-                                  "5" => ["0.", ".0", ".."], "6" => ["00", "0.", ".."],
-                                  "7" => ["00", "00", ".."], "8" => ["0.", "00", ".."],
-                                  "9" => [".0", "0.", ".."]}
-
       @new_library = @library.invert
-      @new_number_library = @number_library.invert
   end
 
   def convert_multiline(braille)
@@ -65,13 +56,19 @@ class NightReader
     row_1.zip(row_2, row_3)
   end
 
-  def translate_to_english
+  def convert_message
     letters = convert_to_characters
     words = letters.map do |letter|
       @new_library[letter]
     end
-    message = words.join
-    message.gsub(/\^[a-z]/) do |capital_pair|
+    words.join
+  end
+
+  def translate_to_english
+    number_message = convert_message.gsub(/#\S+\s/) do |hashtag_match|
+      hashtag_match[1..-2].tr('abcdefghij', '1234567890')
+    end
+    number_message.gsub(/\^[a-z]/) do |capital_pair|
       capital_pair[1].upcase
     end
   end

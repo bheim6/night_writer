@@ -7,10 +7,10 @@ message = handle.read
 handle.close
 
 
-translate = NightReader.new(message)
+reader = NightReader.new(message)
 
 
-new_english = translate.translate_to_english
+new_english = reader.translate_to_english
 
 
 writer = File.open(ARGV[1], "w")

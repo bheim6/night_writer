@@ -54,6 +54,9 @@ class Translate
     if formatted_number.index(/[0-9]/) == 0
       formatted_number = "#" + formatted_number
     end
+    if ("0".."9").include?(formatted_number[-1])
+      formatted_number = formatted_number + " "
+    end
     formatted_number
   end
 
